@@ -14,11 +14,11 @@ const obj2 = {
 };
 test('getObjectsDiff', () => {
   expect(getObjectsDiff(obj1, obj2)).toEqual([
-    { key: 'follow', value: false, present: 'left' },
+    { key: 'follow', value: false, exist: 'left' },
     { key: 'host', value: 'hexlet.io' },
-    { key: 'proxy', value: '123.234.53.22', present: 'left' },
-    { key: 'timeout', value: 50, present: 'left' },
-    { key: 'timeout', value: 20, present: 'right' },
-    { key: 'verbose', value: true, present: 'right' },
+    { key: 'proxy', value: '123.234.53.22', exist: 'left' },
+    { key: 'timeout', value: 50, exist: 'left' },
+    { key: 'timeout', value: 20, exist: 'right' },
+    { key: 'verbose', value: true, exist: 'right' },
   ]);
 });

@@ -1,7 +1,9 @@
 import fs from 'fs';
 import path, { isAbsolute } from 'path';
 
-const getAbsolutePath = (filePath) => (isAbsolute(filePath) ? filePath : path.join(process.cwd(), filePath));
+function getAbsolutePath(filePath) {
+  return (isAbsolute(filePath) ? filePath : path.join(process.cwd(), filePath));
+}
 
 const genJsonDiff = (filepath1, filepath2) => {
   const absolutePath1 = getAbsolutePath(filepath1);
