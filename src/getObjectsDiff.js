@@ -12,15 +12,15 @@ const getObjectsDiff = (obj1, obj2) => {
         break;
       }
       case (isDefined(left) && isDefined(right)): {
-        acc.push({ key: next, value: left, exist: 'left' }, { key: next, value: right, exist: 'right' });
+        acc.push({ key: next, value: left, left: true }, { key: next, value: right, right: true });
         break;
       }
       case (isDefined(left)): {
-        acc.push({ key: next, value: left, exist: 'left' });
+        acc.push({ key: next, value: left, left: true });
         break;
       }
       case (isDefined(right)): {
-        acc.push({ key: next, value: right, exist: 'right' });
+        acc.push({ key: next, value: right, right: true });
         break;
       }
       default:
