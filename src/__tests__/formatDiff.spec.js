@@ -1,3 +1,4 @@
+import { test, expect } from '@jest/globals';
 import formatDiff from '../formatDiff.js';
 
 const diff = [
