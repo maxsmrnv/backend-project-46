@@ -1,4 +1,5 @@
-const isDefined = (value) => value !== undefined;
+import isDefined from './utils/isDefined.js';
+
 const getObjectsDiff = (obj1, obj2) => {
   const sortedSet = new Set([...Object.keys(obj1), ...Object.keys(obj2)].sort());
 
