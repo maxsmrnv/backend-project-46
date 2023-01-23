@@ -1,9 +1,8 @@
 import isDefined from './utils/isDefined.js';
+import uniq from './utils/uniq.js';
 
-const getObjectsDiff = (obj1, obj2) => {
-  const sortedSet = new Set([...Object.keys(obj1), ...Object.keys(obj2)].sort());
-
-  return [...sortedSet].reduce((acc, next) => {
+function getObjectsDiff(obj1, obj2) {
+  return uniq(Object.keys(obj1), Object.keys(obj2)).sort().reduce((acc, next) => {
     const left = obj1[next];
     const right = obj2[next];
 
@@ -29,5 +28,5 @@ const getObjectsDiff = (obj1, obj2) => {
     }
     return acc;
   }, []);
-};
+}
 export default getObjectsDiff;
