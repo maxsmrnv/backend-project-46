@@ -19,12 +19,8 @@ function getObjectsDiff(obj1, obj2) {
         acc.push({ key: next, value: left, left: true });
         break;
       }
-      case (isDefined(right)): {
-        acc.push({ key: next, value: right, right: true });
-        break;
-      }
       default:
-        break;
+        acc.push({ key: next, value: right, right: true });
     }
     return acc;
   }, []);
