@@ -1,0 +1,7 @@
+---
+apiVersion: v2
+kind: Service
+specSelector: SuperApp
+protocol: TCP
+port: 80
+targetPort: 9376

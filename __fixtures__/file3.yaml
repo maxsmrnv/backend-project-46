@@ -1,0 +1,7 @@
+---
+apiVersion: v1
+kind: Service
+metadataName: my-service
+specSelector: MyApp
+protocol: TCP
+port: 80

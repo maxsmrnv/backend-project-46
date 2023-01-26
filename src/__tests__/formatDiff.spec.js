@@ -1,5 +1,5 @@
 import { test, expect } from '@jest/globals';
-import formatDiff from '../formatDiff.js';
+import formatDiff from '../diffFormatters/object.js';
 
 const diff = [
   { key: 'follow', value: false, left: true },

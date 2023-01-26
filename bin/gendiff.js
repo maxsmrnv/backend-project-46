@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { program } from 'commander';
-import genJsonDiff from '../src/genJsonDiff.js';
+import genDiff from '../src/index.js';
 
 program
   .name('gendiff')
@@ -13,8 +13,8 @@ program
   .option('-f, --format <type>', 'output format')
   .action((str, options) => {
     const [filepath1, filepath2] = options.args;
-    if (!filepath1 || !filepath2) throw new Error('no files provide');
-    genJsonDiff(filepath1, filepath2);
+    if (!filepath1 || !filepath2) throw new Error('no files provided');
+    else genDiff(filepath1, filepath2);
   })
   .parse();
 
