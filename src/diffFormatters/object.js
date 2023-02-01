@@ -1,17 +1,33 @@
-const getSymbol = (diffRecord) => {
+const FORMAT_INDENT = 4;
+
+const getSymbol = (diffRecord, deep = 0) => {
   switch (true) {
     case diffRecord.left:
-      return '-';
+      return `${' '.repeat(FORMAT_INDENT * deep)}  - `;
     case diffRecord.right:
-      return '+';
+      return `${' '.repeat(FORMAT_INDENT * deep)}  + `;
     default:
-      return ' ';
+      return ' '.repeat(FORMAT_INDENT * (deep + 1));
   }
+};
+
+const formatDiffRecord = (record, deep = 0) => {
+  const hasChildren = Array.isArray(record.value);
+  const formattedKey = `${getSymbol(record, deep)}${record.key}`;
+
+  if (hasChildren) {
+    return [
+      `${formattedKey}: {`,
+      ...record.value.flatMap((child) => formatDiffRecord(child, deep + 1)),
+      `${getSymbol({}, deep)}}`,
+    ];
+  }
+  return `${formattedKey}: ${record.value}`;
 };
 
 const formatDiff = (diff) => [
   '{',
-  ...diff.map((el) => `  ${getSymbol(el)} ${el.key}: ${el.value}`),
+  ...diff.flatMap((diffRecord) => formatDiffRecord(diffRecord)),
   '}',
 ].join('\n');
 
