@@ -1,25 +1,11 @@
 import { test, expect } from '@jest/globals';
+import fs from 'fs';
+import path from 'path';
 import getObjectsDiff from '../getObjectsDiff.js';
+import DIFF from '../../__fixtures__/diff.js';
 
-const obj1 = {
-  host: 'hexlet.io',
-  timeout: 50,
-  proxy: '123.234.53.22',
-  follow: false,
-};
+const readFromFixtures = (file) => JSON.parse(fs.readFileSync(path.join(process.cwd(), '__fixtures__', file), 'utf-8'));
 
-const obj2 = {
-  timeout: 20,
-  verbose: true,
-  host: 'hexlet.io',
-};
 test('getObjectsDiff', () => {
-  expect(getObjectsDiff(obj1, obj2)).toEqual([
-    { key: 'follow', value: false, left: true },
-    { key: 'host', value: 'hexlet.io' },
-    { key: 'proxy', value: '123.234.53.22', left: true },
-    { key: 'timeout', value: 50, left: true },
-    { key: 'timeout', value: 20, right: true },
-    { key: 'verbose', value: true, right: true },
-  ]);
+  expect(getObjectsDiff(readFromFixtures('file1.json'), readFromFixtures('file2.json'))).toEqual(DIFF);
 });
