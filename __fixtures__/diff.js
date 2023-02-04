@@ -64,6 +64,11 @@ const DIFF = [
   },
   {
     key: 'group3',
+    value: 'simple',
+    left: true,
+  },
+  {
+    key: 'group3',
     value: [
       {
         key: 'deep',
@@ -80,11 +85,6 @@ const DIFF = [
 
     ],
     right: true,
-  },
-  {
-    key: 'group3',
-    value: 'simple',
-    left: true,
   },
 ];
 

@@ -38,6 +38,7 @@ test('getObjectsDiff', () => {
     + '            id: 45\n'
     + '        }\n'
     + '    }\n'
+    + '  - group3: simple\n'
     + '  + group3: {\n'
     + '        deep: {\n'
     + '            id: {\n'
@@ -46,6 +47,5 @@ test('getObjectsDiff', () => {
     + '        }\n'
     + '        fee: 100500\n'
     + '    }\n'
-    + '  - group3: simple\n'
     + '}');
 });
