@@ -1,10 +1,10 @@
-import formatAsObject from './formatters/json.js';
-import formatAsPlain from './formatters/plain.js';
+import formatAsStylish from './stylish.js';
+import formatAsPlain from './plain.js';
 
 const format = (diff, formatName) => {
   switch (formatName) {
-    case 'json':
-      return formatAsObject(diff);
+    case 'stylish':
+      return formatAsStylish(diff);
     case 'plain': {
       return formatAsPlain(diff);
     }

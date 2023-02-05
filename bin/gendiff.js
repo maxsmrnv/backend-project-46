@@ -8,16 +8,14 @@ program
   .version('0.0.1')
   .description('Compares two configuration files and shows a difference.')
   .usage('[options] <filepath1> <filepath2>')
-  .option('-V, --version', 'output the version number')
   .option('-h, --help', 'output usage information')
   .option('-f, --format <type>', 'output format')
   .action((str, options) => {
+    const opts = program.opts();
+    if (opts.help) program.help();
+
     const [filepath1, filepath2] = options.args;
     if (!filepath1 || !filepath2) throw new Error('no files provided');
-    else genDiff(filepath1, filepath2, program.opts().format);
+    else genDiff(filepath1, filepath2, opts.format);
   })
   .parse();
-
-const options = program.opts();
-
-if (options.help) program.help();

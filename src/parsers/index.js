@@ -1,5 +1,5 @@
-import parseYml from './parsers/yaml.js';
-import parseJson from './parsers/json.js';
+import parseYml from './yaml.js';
+import parseJson from './json.js';
 
 const YAML_VALID_EXT = ['yaml', 'yml'];
 const JSON_VALID_EXT = ['json'];

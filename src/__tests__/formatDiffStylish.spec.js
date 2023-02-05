@@ -1,5 +1,5 @@
 import { test, expect } from '@jest/globals';
-import formatDiff from '../formatters/json.js';
+import formatDiff from '../formatters/stylish.js';
 import DIFF from '../../__fixtures__/diff.js';
 
 test('getObjectsDiff', () => {

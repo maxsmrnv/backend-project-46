@@ -1,7 +1,7 @@
 import path, { isAbsolute } from 'path';
 import getObjectsDiff from './getObjectsDiff.js';
-import parse from './parse.js';
-import format from './format.js';
+import parse from './parsers/index.js';
+import format from './formatters/index.js';
 
 function getAbsolutePath(filePath) {
   return (isAbsolute(filePath) ? filePath : path.join(process.cwd(), filePath));
