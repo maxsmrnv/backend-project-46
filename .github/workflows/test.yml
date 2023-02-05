@@ -1,5 +1,5 @@
 # Name of workflow
-name: Run tests
+name: Lint / Test
 
 # Trigger the workflow on push or pull request
 on:

@@ -14,7 +14,7 @@ program
   .action((str, options) => {
     const [filepath1, filepath2] = options.args;
     if (!filepath1 || !filepath2) throw new Error('no files provided');
-    else genDiff(filepath1, filepath2);
+    else genDiff(filepath1, filepath2, program.opts().format);
   })
   .parse();
 
