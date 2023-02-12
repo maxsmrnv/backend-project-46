@@ -24,7 +24,7 @@ const DIFF = [
             ],
           },
           { key: 'key', value: 'value' },
-          { key: 'ops', value: 'vops', right: true },
+          { key: 'ops', value: 'ops', right: true },
         ],
       },
     ],

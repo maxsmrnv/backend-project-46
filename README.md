@@ -21,6 +21,10 @@ Source files types:
 Diff formatting types:
   - stylish (default)
   - plain
+  - json
+  
+Usage example:
+  gendiff ./__fixtures__/file1.json ./__fixtures__/file2.json -f json
 
 ```
 

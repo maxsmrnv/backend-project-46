@@ -2,7 +2,7 @@ import { test, expect } from '@jest/globals';
 import formatDiff from '../formatters/stylish.js';
 import DIFF from '../../__fixtures__/diff.js';
 
-test('getObjectsDiff', () => {
+test('format diff as stylish', () => {
   expect(formatDiff(DIFF)).toEqual('{\n'
     + '    common: {\n'
     + '      + follow: false\n'
@@ -20,7 +20,7 @@ test('getObjectsDiff', () => {
     + '              + wow: so much\n'
     + '            }\n'
     + '            key: value\n'
-    + '          + ops: vops\n'
+    + '          + ops: ops\n'
     + '        }\n'
     + '    }\n'
     + '    group1: {\n'
