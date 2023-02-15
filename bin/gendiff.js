@@ -19,3 +19,5 @@ program
     else genDiff(filepath1, filepath2, opts.format);
   })
   .parse();
+
+export default genDiff;
