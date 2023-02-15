@@ -13,6 +13,9 @@ const genDiff = (filepath1, filepath2, formatName = 'stylish') => {
 
   const diff = getObjectsDiff(parse(absolutePath1), parse(absolutePath2));
 
-  console.log(format(diff, formatName));
+  const formatted = format(diff, formatName);
+
+  console.log(formatted);
+  return formatted;
 };
 export default genDiff;
