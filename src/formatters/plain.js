@@ -18,7 +18,7 @@ function makeRemovedRecord(prop) {
 const iter = (diff, path = []) => {
   let prev = {};
 
-  return diff.reduce((acc, next) => {
+  return diff.reduce((acc, next, idx, currentArray) => {
     switch (true) {
       case (next.right): {
         if (prev.key === next.key) {
@@ -31,6 +31,8 @@ const iter = (diff, path = []) => {
         break;
       }
       case (next.left): {
+        const isLast = currentArray.length - 1 === idx;
+        if (isLast) acc.push(makeRemovedRecord([...path, next.key]));
         if (prev.key) acc.push(makeRemovedRecord([...path, prev.key]));
         prev = next;
         break;

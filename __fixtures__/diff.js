@@ -81,6 +81,7 @@ const DIFF = [
     ],
     right: true,
   },
+  { key: 'group4', value: 'bye', left: true },
 ];
 
 export default DIFF;

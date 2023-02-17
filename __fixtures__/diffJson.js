@@ -83,6 +83,10 @@ const DIFF = {
     },
     type: 'added',
   },
+  group4: {
+    value: 'bye',
+    type: 'removed',
+  },
 };
 
 export default JSON.stringify(DIFF);
