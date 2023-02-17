@@ -11,7 +11,7 @@ const DIFF = {
       },
       setting3: {
         prevValue: true,
-        value: null,
+        value: { key: 'value' },
         type: 'updated',
       },
       setting4: {
@@ -29,7 +29,7 @@ const DIFF = {
           doge: {
             value: {
               wow: {
-                prevValue: '',
+                prevValue: 'too much',
                 value: 'so much',
                 type: 'updated',
               },
@@ -73,7 +73,6 @@ const DIFF = {
     type: 'removed',
   },
   group3: {
-    prevValue: 'simple',
     value: {
       deep: {
         id: {
@@ -82,7 +81,7 @@ const DIFF = {
       },
       fee: 100500,
     },
-    type: 'updated',
+    type: 'added',
   },
 };
 

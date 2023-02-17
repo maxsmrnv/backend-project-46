@@ -1,51 +1,11 @@
 import { test, expect } from '@jest/globals';
+import fs from 'fs';
+import path from 'path';
 import formatDiff from '../formatters/stylish.js';
 import DIFF from '../../__fixtures__/diff.js';
 
+const DIFF_STYLISH = fs.readFileSync(path.join(process.cwd(), '__fixtures__', 'diffStylish.txt'), 'utf-8');
+
 test('format diff as stylish', () => {
-  expect(formatDiff(DIFF)).toEqual('{\n'
-    + '    common: {\n'
-    + '      + follow: false\n'
-    + '        setting1: Value 1\n'
-    + '      - setting2: 200\n'
-    + '      - setting3: true\n'
-    + '      + setting3: null\n'
-    + '      + setting4: blah blah\n'
-    + '      + setting5: {\n'
-    + '            key5: value5\n'
-    + '        }\n'
-    + '        setting6: {\n'
-    + '            doge: {\n'
-    + '              - wow: \n'
-    + '              + wow: so much\n'
-    + '            }\n'
-    + '            key: value\n'
-    + '          + ops: ops\n'
-    + '        }\n'
-    + '    }\n'
-    + '    group1: {\n'
-    + '      - baz: bas\n'
-    + '      + baz: bars\n'
-    + '        foo: bar\n'
-    + '      - nest: {\n'
-    + '            key: value\n'
-    + '        }\n'
-    + '      + nest: str\n'
-    + '    }\n'
-    + '  - group2: {\n'
-    + '        abc: 12345\n'
-    + '        deep: {\n'
-    + '            id: 45\n'
-    + '        }\n'
-    + '    }\n'
-    + '  - group3: simple\n'
-    + '  + group3: {\n'
-    + '        deep: {\n'
-    + '            id: {\n'
-    + '                number: 45\n'
-    + '            }\n'
-    + '        }\n'
-    + '        fee: 100500\n'
-    + '    }\n'
-    + '}');
+  expect(formatDiff(DIFF)).toEqual(DIFF_STYLISH);
 });

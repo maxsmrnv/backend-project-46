@@ -6,7 +6,7 @@ const DIFF = [
       { key: 'setting1', value: 'Value 1' },
       { key: 'setting2', value: 200, left: true },
       { key: 'setting3', value: true, left: true },
-      { key: 'setting3', value: null, right: true },
+      { key: 'setting3', value: [{ key: 'key', value: 'value' }], right: true },
       { key: 'setting4', value: 'blah blah', right: true },
       {
         key: 'setting5',
@@ -19,7 +19,7 @@ const DIFF = [
           {
             key: 'doge',
             value: [
-              { key: 'wow', value: '', left: true },
+              { key: 'wow', value: 'too much', left: true },
               { key: 'wow', value: 'so much', right: true },
             ],
           },
@@ -60,11 +60,6 @@ const DIFF = [
         ],
       },
     ],
-    left: true,
-  },
-  {
-    key: 'group3',
-    value: 'simple',
     left: true,
   },
   {

@@ -24,7 +24,10 @@ const iter = (diff) => {
       case (next.right): {
         if (prev.key === next.key) {
           acc[next.key] = makeUpdatedRecord(prev.value, next.value);
-        } else acc[next.key] = makeAddedRecord(next.value);
+        } else {
+          if (prev.key) acc[prev.key] = makeRemovedRecord(prev.value);
+          acc[next.key] = makeAddedRecord(next.value);
+        }
         prev = {};
         break;
       }

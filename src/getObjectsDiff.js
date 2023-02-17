@@ -4,7 +4,6 @@ import isObject from './utils/isObject.js';
 
 const getFormattedValue = (maybeObjectValue) => {
   if (!isObject(maybeObjectValue)) return maybeObjectValue;
-
   const entries = Object.entries(maybeObjectValue).sort();
   return entries.reduce((acc, [key, value]) => {
     acc.push({ key, value: isObject(value) ? getFormattedValue(value) : value });

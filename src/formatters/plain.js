@@ -23,7 +23,10 @@ const iter = (diff, path = []) => {
       case (next.right): {
         if (prev.key === next.key) {
           acc.push(makeUpdatedRecord([...path, next.key], prev.value, next.value));
-        } else acc.push(makeAddedRecord([...path, next.key], next.value));
+        } else {
+          if (prev.key) acc.push(makeRemovedRecord([...path, prev.key]));
+          acc.push(makeAddedRecord([...path, next.key], next.value));
+        }
         prev = {};
         break;
       }
