@@ -1,87 +1,125 @@
 const DIFF = [
   {
-    key: 'common',
-    value: [
-      { key: 'follow', value: false, right: true },
-      { key: 'setting1', value: 'Value 1' },
-      { key: 'setting2', value: 200, left: true },
-      { key: 'setting3', value: true, left: true },
-      { key: 'setting3', value: [{ key: 'key', value: 'value' }], right: true },
-      { key: 'setting4', value: 'blah blah', right: true },
+    children: [
+      {
+        key: 'follow',
+        value: false,
+        type: 'added',
+      },
+      {
+        key: 'setting1',
+        value: 'Value 1',
+        type: 'unchanged',
+      },
+      {
+        key: 'setting2',
+        value: 200,
+        type: 'removed',
+      },
+      {
+        key: 'setting3',
+        prevValue: true,
+        value: {
+          key: 'value',
+        },
+        type: 'updated',
+      },
+      {
+        key: 'setting4',
+        value: 'blah blah',
+        type: 'added',
+      },
       {
         key: 'setting5',
-        value: [{ key: 'key5', value: 'value5' }],
-        right: true,
+        value: {
+          key5: 'value5',
+        },
+        type: 'added',
       },
       {
-        key: 'setting6',
-        value: [
+        children: [
           {
-            key: 'doge',
-            value: [
-              { key: 'wow', value: 'too much', left: true },
-              { key: 'wow', value: 'so much', right: true },
+            children: [
+              {
+                key: 'wow',
+                prevValue: 'too much',
+                value: 'so much',
+                type: 'updated',
+              },
             ],
+            key: 'doge',
+            type: 'nested',
           },
-          { key: 'key', value: 'value' },
-          { key: 'ops', value: 'ops', right: true },
+          {
+            key: 'key',
+            value: 'value',
+            type: 'unchanged',
+          },
+          {
+            key: 'ops',
+            value: 'ops',
+            type: 'added',
+          },
         ],
+        key: 'setting6',
+        type: 'nested',
       },
     ],
+    key: 'common',
+    type: 'nested',
   },
   {
-    key: 'group1',
-    value: [
-      { key: 'baz', value: 'bas', left: true },
-      { key: 'baz', value: 'bars', right: true },
-      { key: 'foo', value: 'bar' },
+    children: [
       {
-        key: 'nest',
-        value: [
-          { key: 'key', value: 'value' },
-        ],
-        left: true,
+        key: 'baz',
+        prevValue: 'bas',
+        value: 'bars',
+        type: 'updated',
+      },
+      {
+        key: 'foo',
+        value: 'bar',
+        type: 'unchanged',
       },
       {
         key: 'nest',
+        prevValue: {
+          key: 'value',
+        },
         value: 'str',
-        right: true,
+        type: 'updated',
       },
     ],
+    key: 'group1',
+    type: 'nested',
   },
   {
     key: 'group2',
-    value: [
-      { key: 'abc', value: 12345 },
-      {
-        key: 'deep',
-        value: [
-          { key: 'id', value: 45 },
-        ],
+    value: {
+      abc: 12345,
+      deep: {
+        id: 45,
       },
-    ],
-    left: true,
+    },
+    type: 'removed',
   },
   {
     key: 'group3',
-    value: [
-      {
-        key: 'deep',
-        value: [
-          {
-            key: 'id',
-            value: [
-              { key: 'number', value: 45 },
-            ],
-          },
-        ],
+    value: {
+      deep: {
+        id: {
+          number: 45,
+        },
       },
-      { key: 'fee', value: 100500 },
-
-    ],
-    right: true,
+      fee: 100500,
+    },
+    type: 'added',
   },
-  { key: 'group4', value: 'bye', left: true },
+  {
+    key: 'group4',
+    value: 'bye',
+    type: 'removed',
+  },
 ];
 
 export default DIFF;

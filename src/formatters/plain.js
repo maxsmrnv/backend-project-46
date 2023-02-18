@@ -1,51 +1,39 @@
+import _ from 'lodash';
+
 const getStringValue = (value) => `'${value}'`;
 
 const getValue = (value) => {
-  if (Array.isArray(value)) return '[complex value]';
+  if (_.isObject(value)) return '[complex value]';
   return typeof value === 'string' ? getStringValue(value) : value;
 };
 
-function makeAddedRecord(prop, value) {
-  return `Property '${prop.join('.')}' was added with value: ${getValue(value)}`;
-}
-function makeUpdatedRecord(prop, prevValue, newValue) {
-  return `Property '${prop.join('.')}' was updated. From ${getValue(prevValue)} to ${getValue(newValue)}`;
-}
-function makeRemovedRecord(prop) {
-  return `Property '${prop.join('.')}' was removed`;
+function makeAddedRecord(value, path) {
+  return `Property '${path.join('.')}' was added with value: ${getValue(value)}`;
 }
 
-const iter = (diff, path = []) => {
-  let prev = {};
+function makeRemovedRecord(path) {
+  return `Property '${path.join('.')}' was removed`;
+}
+function makeUpdatedRecord(prevValue, newValue, path) {
+  return `Property '${path.join('.')}' was updated. From ${getValue(prevValue)} to ${getValue(newValue)}`;
+}
 
-  return diff.reduce((acc, next, idx, currentArray) => {
-    switch (true) {
-      case (next.right): {
-        if (prev.key === next.key) {
-          acc.push(makeUpdatedRecord([...path, next.key], prev.value, next.value));
-        } else {
-          if (prev.key) acc.push(makeRemovedRecord([...path, prev.key]));
-          acc.push(makeAddedRecord([...path, next.key], next.value));
-        }
-        prev = {};
-        break;
-      }
-      case (next.left): {
-        const isLast = currentArray.length - 1 === idx;
-        if (isLast) acc.push(makeRemovedRecord([...path, next.key]));
-        if (prev.key) acc.push(makeRemovedRecord([...path, prev.key]));
-        prev = next;
-        break;
-      }
-      default: {
-        if (Array.isArray(next.value)) {
-          acc.push(...iter(next.value, [...path, next.key]));
-        }
-      }
-    }
-    return acc;
-  }, []);
-};
+const iter = (diffTree, path = []) => diffTree.flatMap((node) => {
+  const newPath = [...path, node.key];
+  switch (node.type) {
+    case 'added':
+      return makeAddedRecord(node.value, newPath);
+    case 'removed':
+      return makeRemovedRecord(newPath);
+    case 'updated':
+      return makeUpdatedRecord(node.prevValue, node.value, newPath);
+    case 'nested':
+      return iter(node.children, newPath);
+    case 'unchanged':
+    default:
+      return [];
+  }
+});
 const formatDiff = (diff) => iter(diff).join('\n');
 
 export default formatDiff;
